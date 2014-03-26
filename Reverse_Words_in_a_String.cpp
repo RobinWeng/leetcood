@@ -9,24 +9,26 @@ int main(){
 				string temp;
 		        int index=0;
 		        while(s[index]==' ') ++index;
+		        if(s[index]=='\0') return r; 
 		        while(s[index]!='\0'){
         			while(s[index]==' ') ++index;
         			for(int i=0;s[index]!=' '&&s[index]!='\0';++i,++index){
 			        	temp+=s[index];
-			        	cout<<temp<<endl;
 			        }
-			        r=temp+' '+r;
-			        cout<<r<<endl;
+			        while(s[index]==' ') ++index;
+			        if(s[index]=='\0') r=temp+r;
+			        else r=" "+temp+r;
 			        temp.clear();
         		}
-        		cout<<r<<endl; 
 				return r;		        
 		    }
 	};
-	string s=" ";
+	string s="  ";
 	Solution b;
 	string c;
 	c=b.reverseWords(s);
-	cout<<'a'<<c<<"b"<<endl;
+	cout<<"b"<<c<<"c"<<endl;
+	int e;
+	cin>>e;
 	return 0;
 } 
