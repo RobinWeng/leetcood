@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<stack>
 using namespace std;
 struct TreeNode {
      int val;
@@ -10,17 +11,23 @@ struct TreeNode {
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode *root) {
-		inorder(root);
-		return temp;
+		vector<int> result;
+		stack<TreeNode*> sp;
+		if(root==NULL) return result;
+		while(root!=NULL||sp.size()>0){
+			if(root!=NULL){
+				sp.push(root);
+				root=root->left;
+			}
+			else{
+				root=sp.top();
+				result.push_back(root->val);
+				sp.pop();
+				root=root->right;
+			}
+		}
+		return result;
     }
-	void inorder(TreeNode *root){
-		if(root==NULL) return;
-		inorderTraversal(root->left);
-		temp.push_back(root->val);
-		inorderTraversal(root->right);
-	}
-private:
-	vector<int> temp;
 };
 void createTree(TreeNode**root,char *array){
 	static int count;
@@ -41,4 +48,6 @@ int main(){
 	for(int i=0;i<show.size();++i){
 		cout<<show[i]<<" ";
 	}
+	return 0;
 }
+
