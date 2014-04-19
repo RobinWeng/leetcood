@@ -1,20 +1,24 @@
 #include<iostream>
 #include<vector>
+#include<hashmap>
 using namespace std;
+using namespace stdext;
 int main(){
 	class Solution {
 	public:
-	    vector<int> twoSum(vector<int> &numbers, int target) {
-	        vector<int> result;
+	    vector<int> twoSum(vector<int> &numbers, int target){
+	        hash_map<int,int> hashmap;
+			vector<int> result;			
 	        int gap;
 	        int length=numbers.size();
+	        for(int i=0;i<length;++i){
+        		hashmap[numbers[i]]=i;
+        	}	        
 			for(int i=0;i<length;++i){
-				if(numbers[i]>target) continue;
 				gap=target-numbers[i];
-				if(find(numbers.begin()+i,numbers.end(),gap)!=numbers.end()){
-					 result.push_back(i+1);
-					 for(int j=i+1;j<length;++j)
-					 	if(numbers[j]==gap) result.push_back(j+1);
+				if(hashmap.find(gap)!=hashmap.end()){
+					result.push_back(i+1);
+				 	result.push_back(hashmap[gap]+1);
 					return  result;
 				}				
 			}
